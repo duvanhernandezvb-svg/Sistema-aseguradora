@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aseguradora - Frontend</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+ <header>
+    <div>
+        <h1>Aseguradora - Panel</h1>
+        <div id="current-module" style="font-size: 14px; color: #666; margin-top: 4px;">
+            <!-- Aquí se mostrará el módulo activo -->
+        </div>
+    </div>
+    <nav>
+        <button id="nav-login">Login</button>
+        <button id="nav-clients">Clientes</button>
+        <button id="nav-policies">Pólizas</button>
+        <button id="nav-claims">Siniestros</button>
+        <button id="nav-payments">Pagos</button>
+    </nav>
+</header>
+
+  <main>
+    <section id="view-login" class="view">
+      <h2>Login</h2>
+      <form id="form-login">
+        <label>Usuario <input type="text" id="login-username" value="admin" /></label>
+        <label>Contraseña <input type="password" id="login-password" value="admin" /></label>
+        <button type="submit">Obtener token</button>
+      </form>
+      <div id="login-msg" class="msg"></div>
+    </section>
+
+    <section id="view-clients" class="view hidden">
+      <h2>Clientes</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Crear cliente</h3>
+          <form id="form-client-create">
+            <label>Documento <input type="text" id="c-doc" required /></label>
+            <label>Nombre <input type="text" id="c-name" required /></label>
+            <label>Apellido <input type="text" id="c-last" required /></label>
+            <label>Placa <input type="text" id="c-plate" /></label>
+            <button type="submit">Crear</button>
+          </form>
+          <div id="client-create-msg" class="msg"></div>
+        </div>
+
+        <div class="card">
+          <h3>Consultar / Actualizar / Eliminar</h3>
+          <label>ID <input type="number" id="c-id" /></label>
+          <button id="btn-client-get">Consultar por ID</button>
+          <div id="client-data"></div>
+          <form id="form-client-update" class="hidden">
+            <label>Nombre <input type="text" id="u-name" /></label>
+            <label>Apellido <input type="text" id="u-last" /></label>
+            <label>Placa <input type="text" id="u-plate" /></label>
+            <button type="submit">Actualizar</button>
+            <button type="button" id="btn-client-delete" class="danger">Eliminar</button>
+          </form>
+          <div id="client-action-msg" class="msg"></div>
+        </div>
+
+        <div class="card full">
+          <h3>Listado de clientes</h3>
+          <button id="btn-list-clients">Refrescar lista</button>
+          <table id="clients-table">
+            <thead><tr><th>ID</th><th>Documento</th><th>Nombre</th><th>Apellido</th><th>Placa</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-policies" class="view hidden">
+      <h2>Pólizas</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Crear póliza</h3>
+          <form id="form-policy-create">
+            <label>Cliente ID <input type="number" id="p-client-id" required /></label>
+            <label>Número póliza <input type="text" id="p-num" required /></label>
+            <label>Tipo <input type="text" id="p-type" required /></label>
+            <label>Placa <input type="text" id="p-plate" /></label>
+            <label>Fecha inicio <input type="date" id="p-start" required /></label>
+            <label>Fecha fin <input type="date" id="p-end" required /></label>
+            <label>Valor <input type="number" id="p-value" required /></label>
+            <button type="submit">Crear</button>
+          </form>
+          <div id="policy-create-msg" class="msg"></div>
+        </div>
+
+        <div class="card">
+          <h3>Consultar por cliente (documento)</h3>
+          <label>Documento <input type="text" id="p-doc" /></label>
+          <button id="btn-policies-by-doc">Buscar pólizas</button>
+          <div id="policies-by-client"></div>
+        </div>
+
+        <div class="card full">
+          <h3>Listado de pólizas</h3>
+          <button id="btn-list-policies">Refrescar lista</button>
+          <table id="policies-table">
+            <thead><tr><th>ID</th><th>Número</th><th>Tipo</th><th>Cliente ID</th><th>Placa</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-claims" class="view hidden">
+      <h2>Siniestros</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Crear siniestro</h3>
+          <form id="form-claim-create">
+            <label>Cliente ID <input type="number" id="s-client-id" required /></label>
+            <label>Póliza ID <input type="number" id="s-policy-id" required /></label>
+            <label>Fecha <input type="date" id="s-date" required /></label>
+            <label>Descripción <textarea id="s-desc"></textarea></label>
+            <button type="submit">Crear</button>
+          </form>
+          <div id="claim-create-msg" class="msg"></div>
+        </div>
+
+        <div class="card">
+          <h3>Consultar por cliente (documento)</h3>
+          <label>Documento <input type="text" id="s-doc" /></label>
+          <button id="btn-claims-by-doc">Buscar siniestros</button>
+          <div id="claims-by-client"></div>
+        </div>
+
+        <div class="card full">
+          <h3>Listado de siniestros</h3>
+          <button id="btn-list-claims">Refrescar lista</button>
+          <table id="claims-table">
+            <thead><tr><th>ID</th><th>Poliza ID</th><th>Cliente ID</th><th>Fecha</th><th>Descripción</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-payments" class="view hidden">
+      <h2>Pagos</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Registrar pago</h3>
+          <form id="form-payment-create">
+            <label>Cliente ID <input type="number" id="pay-client-id" required /></label>
+            <label>Póliza ID <input type="number" id="pay-policy-id" required /></label>
+            <label>Fecha pago <input type="date" id="pay-date" required /></label>
+            <label>Valor pagado <input type="number" id="pay-value" required /></label>
+            <label>Pagado <select id="pay-paid"><option value="true">Sí</option><option value="false">No</option></select></label>
+            <button type="submit">Registrar</button>
+          </form>
+          <div id="payment-create-msg" class="msg"></div>
+        </div>
+
+        <div class="card">
+          <h3>Consultar por cliente (documento)</h3>
+          <label>Documento <input type="text" id="pay-doc" /></label>
+          <button id="btn-payments-by-doc">Buscar pagos</button>
+          <div id="payments-by-client"></div>
+        </div>
+
+        <div class="card full">
+          <h3>Listado de pagos</h3>
+          <button id="btn-list-payments">Refrescar lista</button>
+          <table id="payments-table">
+            <thead><tr><th>ID</th><th>Poliza ID</th><th>Cliente ID</th><th>Fecha</th><th>Valor</th><th>Pagado</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Frontend simple - FastAPI backend</small>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
