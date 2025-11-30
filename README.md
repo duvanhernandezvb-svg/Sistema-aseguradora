@@ -25,32 +25,6 @@ El backend incluye:
 - Fetch API para comunicación con el backend
 
 ---
-
-## Instalación y configuración
-
-aseguradora-backend/
-│
-├─ main.py               # Punto de entrada del backend
-├─ config.py             # Variables de configuración (DB y JWT)
-├─ database.py           # Conexión y sesión a PostgreSQL
-├─ schemas.py            # Modelos Pydantic para validación de datos
-├─ errors.py             # Manejo de errores HTTP
-├─ auth.py               # Autenticación JWT
-├─ routers/              # Endpoints de cada módulo
-│   ├─ clientes.py
-│   ├─ polizas.py
-│   ├─ siniestros.py
-│   ├─ pagos.py
-│   └─ usuario.py
-├─ crud/                 # Lógica CRUD para cada módulo
-│   ├─ clientes.py
-│   ├─ polizas.py
-│   ├─ siniestros.py
-│   ├─ pagos.py
-│   └─ usuario.py
-└─ requirements.txt      # Dependencias Python
----
-
 ## Ejecutar localmente
 1. Crear entorno virtual: `python -m venv .venv`
 2. Activar: `source .venv/bin/activate` (Linux/Mac) o `.venv\Scripts\activate` (Windows)
