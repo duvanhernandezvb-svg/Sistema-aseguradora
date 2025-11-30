@@ -25,11 +25,6 @@ El backend incluye:
 
 ## Instalación y configuración
 
-### 1. Clonar repositorio
-```bash
-git clone <URL_DEL_REPOSITORIO>
-cd aseguradora-backend
-
 aseguradora-backend/
 │
 ├─ main.py               # Punto de entrada del backend
